@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<button id="btn_load_id" type="button" class="btn btn-success">Upload Data</button>
+<hr />
+
+<div id="loading_id" class="alert alert-warning" style="display:none;">Loading...</div>
+<ul id="list_id" class="list-group"></ul>
+
+<script>
+
+    $(function () {
+
+        $("#btn_load_id").click(function () {
+
+            $("#list_id").empty();
+
+            $("#loading_id").show(300, function () {
+
+                $.get("/Home/Data_Getter", function (d) { //birinci parametrede belirtilen adresteki datayı d isimli değişkenimize kendisi otomatik aktarır.
+
+                    $("#list_id").html(d);
+
+                    $("#loading_id").hide(300);
+                });
+
+            });
+
+        });
+
+    });
+
+</script>
